@@ -30,7 +30,9 @@ jobs:
           cd ../client
           npm install
           npm run build
-          cd ../server
+          cd ..
+          rm -rf server/public
+          cp -r client/dist server/public
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
