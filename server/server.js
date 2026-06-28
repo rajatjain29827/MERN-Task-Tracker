@@ -15,7 +15,7 @@ app.use(express.json());
 
 app.use("/api/tasks", taskRoutes);
 
-const clientBuild = path.join(__dirname, "..", "client", "dist");
+const clientBuild = path.join(__dirname, "public");
 app.use(express.static(clientBuild));
 app.get("*", (req, res) => {
   res.sendFile(path.join(clientBuild, "index.html"));
