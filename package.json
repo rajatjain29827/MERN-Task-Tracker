@@ -1,0 +1,17 @@
+{
+  "name": "mern-task-tracker",
+  "version": "1.0.0",
+  "description": "MERN Stack Task Tracker Application",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "build:client": "cd client && npm run build && cd ..",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install && cd ..",
+    "build": "cd client && npm install && npm run build && cd ../server && npm install && cd .."
+  },
+  "dependencies": {},
+  "engines": {
+    "node": "20.x"
+  }
+}

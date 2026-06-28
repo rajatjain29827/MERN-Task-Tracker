@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const dotenv = require("dotenv");
-const fs = require("fs");
 const connectDB = require("./config/db");
 const taskRoutes = require("./routes/tasks");
 
@@ -16,21 +15,11 @@ app.use(express.json());
 
 app.use("/api/tasks", taskRoutes);
 
-// Diagnostic route to check if public files exist
-app.get("/health", (req, res) => {
-  const publicDir = path.join(__dirname, "public");
-  const indexPath = path.join(publicDir, "index.html");
-  res.json({
-    status: "OK",
-    publicDir,
-    indexPath,
-    indexExists: fs.existsSync(indexPath),
-    __dirname
-  });
-});
-
-const clientBuild = path.join(__dirname, "public");
+// Serve React build from client/dist
+const clientBuild = path.join(__dirname, "..", "client", "dist");
 app.use(express.static(clientBuild));
+
+// SPA fallback - serve index.html for all unmatched routes
 app.get("*", (req, res) => {
   res.sendFile(path.join(clientBuild, "index.html"));
 });
