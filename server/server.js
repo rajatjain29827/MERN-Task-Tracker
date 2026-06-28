@@ -15,11 +15,11 @@ app.use(express.json());
 
 app.use("/api/tasks", taskRoutes);
 
-// Serve React build from client/dist
-const clientBuild = path.join(__dirname, "client", "dist");
+// Serve React build from server/public (copied during build pipeline)
+const clientBuild = path.join(__dirname, "public");
 app.use(express.static(clientBuild));
 
-// SPA fallback - serve index.html for all unmatched routes
+// SPA fallback
 app.get("*", (req, res) => {
   res.sendFile(path.join(clientBuild, "index.html"));
 });

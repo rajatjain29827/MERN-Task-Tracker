@@ -26,8 +26,8 @@ jobs:
         run: npm ci && npm run build
         working-directory: client
 
-      - name: Copy client build into server
-        run: cp -r client/dist server/public
+      - name: Copy client build into server/public
+        run: cp -r client/dist/. server/public
 
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v3

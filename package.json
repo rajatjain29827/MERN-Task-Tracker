@@ -7,8 +7,9 @@
     "start": "node server/server.js",
     "dev": "nodemon server/server.js",
     "build:client": "cd client && npm run build && cd ..",
+    "postbuild": "node -e \"const f=require('fs'),s=require('path');const src=s.join('client','dist'),dest=s.join('server','public');if(f.existsSync(dest))f.rmSync(dest,{recursive:true});f.cpSync(src,dest,{recursive:true});console.log('Copied client build to server/public')\"",
     "install:all": "npm install && cd server && npm install && cd ../client && npm install && cd ..",
-    "build": "cd client && npm install && npm run build && cd ../server && npm install && cd .."
+    "build": "cd client && npm install && npm run build && cd ../server && npm install && cd .. && npm run postbuild"
   },
   "dependencies": {},
   "engines": {
