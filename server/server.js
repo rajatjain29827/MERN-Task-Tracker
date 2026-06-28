@@ -16,7 +16,7 @@ app.use(express.json());
 app.use("/api/tasks", taskRoutes);
 
 // Serve React build from client/dist
-const clientBuild = path.join(__dirname, "..", "client", "dist");
+const clientBuild = path.join(__dirname, "client", "dist");
 app.use(express.static(clientBuild));
 
 // SPA fallback - serve index.html for all unmatched routes
